@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <script src="/socket.io/socket.io.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	    <meta charset="utf-8"> 
+
+  </head>
+  <body style = "background-color: red;">
+    <script>
+
+      var socket = io.connect();
+      
+	  
+	
+	
+     
+
+function othername() {
+    var input = document.getElementById("userInput").value; 
+	 var backgroundcol = document.getElementById("backgroundcolor").value;
+
+    alert(input + '' + 'BAckground Color:' + backgroundcol);
+	socket.emit('userinputsent', input, backgroundcol);
+}
+
+    
+      
+            $(document).off('click', '#submitpicture').on('click', '#submitpicture', function () {
+            console.log('picture submission sent');
+            socket.emit('picturesubmitted');
+	    
+	     });
+		 
+		 
+		    
+   
+
+      
+      socket.on('changeBgColorEveryWhere', function (color) {
+                console.log(color);
+                $('body').css('background', color);
+		
+			
+            });
+    </script>
+  
+    
+    
+    
+    
+    <form id="form" onsubmit="return false;">
+	<fieldset>
+	<p style="position:absolute; top:45%; left:5%; width:40%;">Enter Text To Display:</p><br>
+    <input style="position:absolute; top:50%; left:5%; width:40%;" type="text" id="userInput" />
+	<p style="position:absolute; top:60%; left:5%; width:40%;">Enter Background Color:</p><br>
+	<input style="position:absolute; top:65%; left:5%; width:40%;" type="text" id="backgroundcolor"></input>
+    <input style="position:absolute; top:80%; left:5%; width:40%;" type="submit" onclick="othername();" />
+	    <button style="position:absolute; top:90%; left:5%; width:40%;" id="submitpicture">Submit Photo</button>	
+
+	</fieldset>
+	
+</form>
+
+
+
+    
+
+  </body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "name": "cjdoodle",
+  "version": "0.0.0",
+  "description": "cjsrc",
+  "main": "exserver.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "cj",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "child_process": "^1.0.2",
+    "express": "^4.15.2",
+    "fs": "0.0.1-security",
+    "http-server": "^0.9.0",
+    "jquery-countdown": "^2.2.0",
+    "path": "^0.12.7",
+    "prompt": "^1.0.0",
+    "socket.io": "^1.7.3",
+    "wget": "0.0.1"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "cjsrc"
+  }
+}
