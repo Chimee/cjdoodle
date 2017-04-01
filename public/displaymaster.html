@@ -65,7 +65,7 @@
     </script>
   
     
-    
+        
     
 	<div id="img">
 
@@ -82,7 +82,14 @@
  </div>
  
      <button id="clearscreen">Clear Screen</button>	
-
+<form id        =  "uploadForm"
+     enctype   =  "multipart/form-data"
+     action    =  "/api/photo"
+     method    =  "post"
+>
+<input type="file" name="userPhoto" />
+<input type="submit" value="Upload Image" name="submit">
+</form>
  
 
   </body>

@@ -1,3 +1,4 @@
+
 var http = require('http');
 var url = require('url');
 var fs = require('fs');
@@ -7,10 +8,23 @@ var io = require('socket.io')(server);
 var server = require('http').createServer(app);
 var path = require('path');
 var wget = require('wget');
+var router = express.Router();
+var connect = require('connect');
+var multer = require('multer');
+var storage =   multer.diskStorage({
+  destination: function (req, file, callback) {
+    callback(null, './uploads');
+  },
+  filename: function (req, file, callback) {
+    callback(null, file.originalname);
+  }
+});
+var upload = multer({ storage : storage}).single('userPhoto');
 
 
 var hostname = '0.0.0.0'; //hostname will use later
 var port = 8000; 
+
 
 app.use(express.static(__dirname + '/node_modules'));
 app.use(express.static(__dirname));
@@ -18,9 +32,26 @@ app.use(express.static(__dirname + '/bower_components'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', function (req, res, next){	
 	res.sendFile(__dirname + '/index.html');
-		
-	
 });
+
+
+app.post('/api/photo',function(req,res){
+    upload(req,res,function(err) {
+        if(err) {
+            return res.end("Error uploading file.");
+        }
+        res.end("File is uploaded");
+    });
+});
+
+
+
+
+app.get('/image.png', function (req, res) {
+    
+	res.sendFile(path.resolve('./uploads/image.png'));
+}); 
+
 
 server.listen(port);
 

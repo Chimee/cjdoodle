@@ -46,10 +46,13 @@ function othername() {
 		
 			
             });
+			$("bfh-colorpicker").bfhcolorpicker('toggle')
+			
+
     </script>
   
-    
-    
+ 
+   
     
     
     <form id="form" onsubmit="return false;">
@@ -57,7 +60,15 @@ function othername() {
 	<p style="position:absolute; top:45%; left:5%; width:40%;">Enter Text To Display:</p><br>
     <input style="position:absolute; top:50%; left:5%; width:40%;" type="text" id="userInput" />
 	<p style="position:absolute; top:60%; left:5%; width:40%;">Enter Background Color:</p><br>
-	<input style="position:absolute; top:65%; left:5%; width:40%;" type="text" id="backgroundcolor"></input>
+	<input style="position:absolute; top:65%; left:5%; width:40%;" type="text" list="colorchoices" id="backgroundcolor">
+	<datalist id="colorchoices">
+			  <option value="Red">
+			  <option value="Black">
+			  <option value="Blue">
+			  <option value="Green">
+			  <option value="Purple">
+			  <option value="Yellow">
+	</datalist>
     <input style="position:absolute; top:80%; left:5%; width:40%;" type="submit" onclick="othername();" />
 	    <button style="position:absolute; top:90%; left:5%; width:40%;" id="submitpicture">Submit Photo</button>	
 
@@ -66,6 +77,18 @@ function othername() {
 </form>
 
 
+
+<div class="bfh-colorpicker" data-name="colorpicker1">
+</div>
+<form id        =  "uploadForm"
+     enctype   =  "multipart/form-data"
+     action    =  "/api/photo"
+     method    =  "post"
+>
+<input type="file" name="userPhoto" />
+<input type="submit" value="Upload Image" name="submit">
+</form>
+    
 
     
 
