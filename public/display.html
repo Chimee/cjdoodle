@@ -75,22 +75,54 @@
  
  
  </style>
-
-
-
  </head>
-  <body>
+<body>
+
+  
+    <!--div id="scrolltest">
+	<h3>Scrolling test... </h3>
+
+</div-->
+
+    
+    
+	<div id="img">
+
+	<image class = "image" />
+
+	</div>
+
+	<div class="container">
+	<div class="jumbotron">
+        <div id="text"></div>
+	<div class="scrolltest">
+	<h3></h3>
+	</div>
+    <p>Powered By JC</p> 
+  </div>
+  
+  
+  <div class="jumbotron">
+         
+		 <div id="timer"></div>
+	
+	
+    <p>Display Time Remaining</p> 
+  </div>
+ 
+</div>
     <script>
       var socket = io.connect();
      
         
       
 	  //Display Text Entered by User
-	socket.on('displayimage', function(userinput, backcolor){
-		console.log("Displaying Text " + userinput + " Backgroung Color: " + backcolor);
+	socket.on('displayimage', function(userinput, backcolor, jtroncolor){
+		console.log("Displaying Text: " + userinput + " Background Color: " + backcolor);
 		
 		$('#text').text(userinput)
 		$('body').css('background', backcolor);
+		$('#jumbotron').css('background-color', jtroncolor + ' !important');
 		$('h3').text(userinput)		
             });
 	    
@@ -127,39 +159,5 @@
 		   });
 		   
     </script>
-  
-    <!--div id="scrolltest">
-	<h3>Scrolling test... </h3>
-
-</div-->
-
-    
-    
-	<div id="img">
-
-	<image class = "image" />
-
-	</div>
-
-	<div class="container">
-	<div class="jumbotron">
-        <div id="text"></div>
-	<div class="scrolltest">
-	<h3></h3>
-	</div>
-    <p>Powered By JC</p> 
-  </div>
-  
-  
-  <div class="jumbotron">
-         
-		 <div id="timer"></div>
-	
-	
-    <p>Display Time Remaining</p> 
-  </div>
- 
-</div>
-
   </body>
 </html>

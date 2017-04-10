@@ -80,10 +80,10 @@ socket.on('changeBgColor', function (color) {
 	
 	}, 1000);
 
-socket.on('userinputsent', function (userinput, backcolor) {
-        console.log(userinput, backcolor);
-        socket.broadcast.emit('displayimage', userinput, backcolor);
-        socket.emit('displayimage', userinput, backcolor);    //send color change to client
+socket.on('userinputsent', function (userinput, backcolor, jtroncolor) {
+        console.log(userinput, backcolor, jtroncolor);
+        socket.broadcast.emit('displayimage', userinput, backcolor, jtroncolor);
+        socket.emit('displayimage', userinput, backcolor, jtroncolor);    //send color change to client
 		});
 	
 socket.on('picturesubmitted', function () {

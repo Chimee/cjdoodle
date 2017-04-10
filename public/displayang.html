@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <script src="/socket.io/socket.io.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="/jquery-countdown/dist/jquery.countdown.js"></script>
+	    <meta charset="utf-8"> 
+
+ <style> 
+ #text  { 
+ 
+	color:#F00;
+    font-weight:bold;
+	font-size:300%;
+	position:center;
+	}
+ 
+   #timer {
+  color: RED;
+  font-size: 26px;
+  font-weight: normal;
+  margin-left: 20px;
+  margin-right: 20px;
+  text-align: center;
+}
+   
+   .scrolltest {
+ height: 50px;	
+ overflow: hidden;
+ position: relative;
+}
+.scrolltest h3 {
+ font-size: 3em;
+ color: limegreen;
+ position: absolute;
+ width: 100%;
+ height: 100%;
+ margin: 0;
+ line-height: 50px;
+ text-align: center;
+ /* Starting position */
+ -moz-transform:translateX(100%);
+ -webkit-transform:translateX(100%);	
+ transform:translateX(100%);
+ /* Apply animation to this element */	
+ -moz-animation: scrolltest 15s linear infinite;
+ -webkit-animation: scrolltest 15s linear infinite;
+ animation: scrolltest 15s linear infinite;
+}
+/* Move it (define the animation) */
+@-moz-keyframes scrolltest {
+ 0%   { -moz-transform: translateX(100%); }
+ 100% { -moz-transform: translateX(-100%); }
+}
+@-webkit-keyframes scrolltest {
+ 0%   { -webkit-transform: translateX(100%); }
+ 100% { -webkit-transform: translateX(-100%); }
+}
+@keyframes scrolltest {
+ 0%   { 
+ -moz-transform: translateX(100%); /* Firefox bug fix */
+ -webkit-transform: translateX(100%); /* Firefox bug fix */
+ transform: translateX(100%); 		
+ }
+ 100% { 
+ -moz-transform: translateX(-100%); /* Firefox bug fix */
+ -webkit-transform: translateX(-100%); /* Firefox bug fix */
+ transform: translateX(-100%); 
+ }
+}
+   
+ 
+ 
+ </style>
+
+
+
+ </head>
+  <body>
+    <script>
+      var socket = io.connect();
+     
+        
+      
+	  //Display Text Entered by User
+	socket.on('displayimage', function(userinput, backcolor){
+		console.log("Displaying Text " + userinput + " Backgroung Color: " + backcolor);
+		
+		$('#text').text(userinput)
+		$('body').css('background', backcolor);
+		$('h3').text(userinput)		
+            });
+	    
+      
+      //Display picture submitted by user
+      	socket.on('displaypicture', function(){
+		console.log("Displaying Picture");
+		$('#img').text()
+		$('.image').attr('src', "tomb.jpg")
+				
+            });
+	    
+	    socket.on('clearthescreen', function(){
+		console.log("Clearing Screen");
+		$('#text').empty();
+		
+		});
+		
+		//TIMER JAVASCRIPT - NEED TO START ON COMMAND/EVENT USING SOCKETS
+		Date.prototype.addHours= function(m){
+        this.setMinutes(this.getMinutes()+m);
+        return this;
+          }
+        var futureTime = (new Date()).addHours(30), pauseDate;
+        var currentTime = new Date();
+	jQuery(document).ready(function($) {   
+
+          
+		$("#timer").countdown(futureTime, {defer: false}).on('update.countdown', function(event) {
+ 
+		$(this).html(event.strftime('%H:%M:%S'));
+			
+			});
+		   });
+		   
+    </script>
+  
+    <!--div id="scrolltest">
+	<h3>Scrolling test... </h3>
+
+</div-->
+
+    
+    
+	<div id="img">
+
+	<image class = "image" />
+
+	</div>
+
+	<div class="container">
+	<div class="jumbotron">
+        <div id="text"></div>
+	<div class="scrolltest">
+	<h3></h3>
+	</div>
+    <p>Powered By JC</p> 
+  </div>
+  
+  
+  <div class="jumbotron">
+         
+		 <div id="timer"></div>
+	
+	
+    <p>Display Time Remaining</p> 
+  </div>
+ 
+</div>
+
+  </body>
+</html>

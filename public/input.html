@@ -10,46 +10,7 @@
 
   </head>
   <body style = "background-color: red;">
-    <script>
-
-      var socket = io.connect();
-      
-	  
-	
-	
-     
-
-function othername() {
-    var input = document.getElementById("userInput").value; 
-	 var backgroundcol = document.getElementById("backgroundcolor").value;
-
-    alert(input + '' + 'BAckground Color:' + backgroundcol);
-	socket.emit('userinputsent', input, backgroundcol);
-}
-
-    
-      
-            $(document).off('click', '#submitpicture').on('click', '#submitpicture', function () {
-            console.log('picture submission sent');
-            socket.emit('picturesubmitted');
-	    
-	     });
-		 
-		 
-		    
-   
-
-      
-      socket.on('changeBgColorEveryWhere', function (color) {
-                console.log(color);
-                $('body').css('background', color);
-		
-			
-            });
-			$("bfh-colorpicker").bfhcolorpicker('toggle')
-			
-
-    </script>
+ 
   
  
    
@@ -57,10 +18,10 @@ function othername() {
     
     <form id="form" onsubmit="return false;">
 	<fieldset>
-	<p style="position:absolute; top:45%; left:5%; width:40%;">Enter Text To Display:</p><br>
-    <input style="position:absolute; top:50%; left:5%; width:40%;" type="text" id="userInput" />
-	<p style="position:absolute; top:60%; left:5%; width:40%;">Enter Background Color:</p><br>
-	<input style="position:absolute; top:65%; left:5%; width:40%;" type="text" list="colorchoices" id="backgroundcolor">
+	<p style="position:absolute; top:25%; left:5%; width:40%;">Enter Text To Display:</p><br>
+    <input style="position:absolute; top:35%; left:5%; width:40%;" type="text" id="userInput" />
+	<p style="position:absolute; top:50%; left:5%; width:40%;">Enter Background Color:</p><br>
+	<input style="position:absolute; top:55%; left:5%; width:40%;" type="text" list="colorchoices" id="backgroundcolor">
 	<datalist id="colorchoices">
 			  <option value="Red">
 			  <option value="Black">
@@ -69,6 +30,16 @@ function othername() {
 			  <option value="Purple">
 			  <option value="Yellow">
 	</datalist>
+	<p style="position:absolute; top:60%; left:5%; width:40%;">Enter Background Color:</p><br>
+	<input style="position:absolute; top:65%; left:5%; width:40%;" type="text" list="troncolorchoices" id="jtroncolor">
+	<datalist id="troncolorchoices">
+			  <option value="Red">
+			  <option value="Black">
+			  <option value="Blue">
+			  <option value="Green">
+			  <option value="Purple">
+			  <option value="Yellow">
+	</datalist>	
     <input style="position:absolute; top:80%; left:5%; width:40%;" type="submit" onclick="othername();" />
 	    <button style="position:absolute; top:90%; left:5%; width:40%;" id="submitpicture">Submit Photo</button>	
 
@@ -78,8 +49,7 @@ function othername() {
 
 
 
-<div class="bfh-colorpicker" data-name="colorpicker1">
-</div>
+
 <form id        =  "uploadForm"
      enctype   =  "multipart/form-data"
      action    =  "/api/photo"
@@ -91,6 +61,38 @@ function othername() {
     
 
     
+   <script>
 
+      var socket = io.connect();
+          
+
+function othername() {
+    var input = document.getElementById("userInput").value; 
+	var backgroundcol = document.getElementById("backgroundcolor").value;
+	var jtroncol = document.getElementById("jtroncolor").value;
+    alert('Text Entered: ' + input + '' + 'Background Color:' + backgroundcol + '' + 'JumboTron Color: ' + jtroncol);
+	socket.emit('userinputsent', input, backgroundcol, jtroncol);
+}
+  
+      
+            $(document).off('click', '#submitpicture').on('click', '#submitpicture', function () {
+            console.log('picture submission sent');
+            socket.emit('picturesubmitted');
+	    
+	     });
+		 
+		 
+		    
+      
+      socket.on('changeBgColorEveryWhere', function (color) {
+                console.log(color);
+                $('body').css('background', color);
+		
+			
+            });
+			$("bfh-colorpicker").bfhcolorpicker('toggle')
+			
+
+    </script>
   </body>
 </html>
