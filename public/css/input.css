@@ -1,0 +1,25 @@
+[id=title]{
+	font-size: 250%;
+	background: -webkit-linear-gradient(#eee, #333);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-align:center;
+
+}
+
+.container-fluid {
+    margin-top:10px;
+    border: #000000 medium solid;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    text-align:center;
+        position:relative;
+}
+
+[id=angtest]{
+	font-size: 250%;
+	color: yellow;
+	text-align:center;
+
+}

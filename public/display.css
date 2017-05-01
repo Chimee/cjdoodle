@@ -1,0 +1,66 @@
+
+ #text  { 
+ 
+	color:#F00;
+    font-weight:bold;
+	font-size:300%;
+	position:center;
+	}
+ 
+   #timer {
+  color: RED;
+  font-size: 26px;
+  font-weight: normal;
+  margin-left: 20px;
+  margin-right: 20px;
+  text-align: center;
+}
+   
+   .scrolltest {
+ height: 50px;	
+ overflow: hidden;
+ position: relative;
+}
+.scrolltest h3 {
+ font-size: 3em;
+ color: limegreen;
+ position: absolute;
+ width: 100%;
+ height: 100%;
+ margin: 0;
+ line-height: 50px;
+ text-align: center;
+ /* Starting position */
+ -moz-transform:translateX(100%);
+ -webkit-transform:translateX(100%);	
+ transform:translateX(100%);
+ /* Apply animation to this element */	
+ -moz-animation: scrolltest 15s linear infinite;
+ -webkit-animation: scrolltest 15s linear infinite;
+ animation: scrolltest 15s linear infinite;
+}
+/* Move it (define the animation) */
+@-moz-keyframes scrolltest {
+ 0%   { -moz-transform: translateX(100%); }
+ 100% { -moz-transform: translateX(-100%); }
+}
+@-webkit-keyframes scrolltest {
+ 0%   { -webkit-transform: translateX(100%); }
+ 100% { -webkit-transform: translateX(-100%); }
+}
+@keyframes scrolltest {
+ 0%   { 
+ -moz-transform: translateX(100%); /* Firefox bug fix */
+ -webkit-transform: translateX(100%); /* Firefox bug fix */
+ transform: translateX(100%); 		
+ }
+ 100% { 
+ -moz-transform: translateX(-100%); /* Firefox bug fix */
+ -webkit-transform: translateX(-100%); /* Firefox bug fix */
+ transform: translateX(-100%); 
+ }
+}
+   
+ 
+ 
+ 

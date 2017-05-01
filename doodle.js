@@ -8,7 +8,6 @@ var io = require('socket.io')(server);
 var server = require('http').createServer(app);
 var path = require('path');
 var wget = require('wget');
-var router = express.Router();
 var connect = require('connect');
 var multer = require('multer');
 var storage =   multer.diskStorage({
@@ -27,6 +26,7 @@ var port = 8000;
 
 
 app.use(express.static(__dirname + '/node_modules'));
+app.use(express.static(__dirname + '/public/css'));
 app.use(express.static(__dirname));
 app.use(express.static(__dirname + '/bower_components'));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -67,18 +67,12 @@ io.sockets.on('connection', function(socket){
 
 
 
-socket.on('changeBgColor', function (color) {
-        console.log(color);
-        socket.broadcast.emit('changeBgColorEveryWhere', color.color);
-        socket.emit('changeBgColorEveryWhere', color.color);    //send color change to client
-		});
+
 	
 	
 	//Send Date Data To Client
-    setInterval(function(){
-	io.sockets.emit('date', {'date': new Date()});
+ 
 	
-	}, 1000);
 
 socket.on('userinputsent', function (userinput, backcolor, jtroncolor) {
         console.log(userinput, backcolor, jtroncolor);

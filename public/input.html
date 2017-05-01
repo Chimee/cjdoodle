@@ -2,26 +2,44 @@
 <html lang="en">
 
   <head>
-    <script src="/socket.io/socket.io.js"></script>
+    
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="/input.css">
+ 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+ 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
 	    <meta charset="utf-8"> 
 
   </head>
   <body style = "background-color: red;">
- 
   
+		<div class="container">
+			<div class="jumbotron">
+				<p id="title">Doodle!</p>
+			</div>
+		</div>
+  
+<div class = "container-fluid">
+<div class = "row content">
+<div class = "col-sm-3 sidenav">
+<div ng-app="">
  
-   
+<p>Input something in the input box:</p>
+<p>Name: <input type="text" ng-model="name"></p>
+<p ng-bind="name" id="angtest"></p>
+
+</div>
+</div>
+
     
-    
+   <div class ="col-sm-6"> 
     <form id="form" onsubmit="return false;">
 	<fieldset>
-	<p style="position:absolute; top:25%; left:5%; width:40%;">Enter Text To Display:</p><br>
-    <input style="position:absolute; top:35%; left:5%; width:40%;" type="text" id="userInput" />
-	<p style="position:absolute; top:50%; left:5%; width:40%;">Enter Background Color:</p><br>
-	<input style="position:absolute; top:55%; left:5%; width:40%;" type="text" list="colorchoices" id="backgroundcolor">
+	<p>Enter Text To Display:</p><br>
+    <input type="text" id="userInput" />
+	<p>Enter Background Color:</p><br>
+	<input type="text" list="colorchoices" id="backgroundcolor">
 	<datalist id="colorchoices">
 			  <option value="Red">
 			  <option value="Black">
@@ -30,8 +48,8 @@
 			  <option value="Purple">
 			  <option value="Yellow">
 	</datalist>
-	<p style="position:absolute; top:60%; left:5%; width:40%;">Enter Background Color:</p><br>
-	<input style="position:absolute; top:65%; left:5%; width:40%;" type="text" list="troncolorchoices" id="jtroncolor">
+	<p>Enter Jumbotron Background Color:</p><br>
+	<input type="text" list="troncolorchoices" id="jtroncolor">
 	<datalist id="troncolorchoices">
 			  <option value="Red">
 			  <option value="Black">
@@ -40,15 +58,15 @@
 			  <option value="Purple">
 			  <option value="Yellow">
 	</datalist>	
-    <input style="position:absolute; top:80%; left:5%; width:40%;" type="submit" onclick="othername();" />
-	    <button style="position:absolute; top:90%; left:5%; width:40%;" id="submitpicture">Submit Photo</button>	
+    <input type="submit" onclick="othername();" />
+	    <button id="submitpicture">Submit Photo</button>	
 
 	</fieldset>
 	
 </form>
+</div>
 
-
-
+<div class="col-sm-3">
 
 <form id        =  "uploadForm"
      enctype   =  "multipart/form-data"
@@ -58,10 +76,12 @@
 <input type="file" name="userPhoto" />
 <input type="submit" value="Upload Image" name="submit">
 </form>
-    
 
-    
-   <script>
+</div>    
+</div>
+</div>
+  
+   <script type="text/javascript">
 
       var socket = io.connect();
           
@@ -90,9 +110,8 @@ function othername() {
 		
 			
             });
-			$("bfh-colorpicker").bfhcolorpicker('toggle')
 			
+</script>
 
-    </script>
   </body>
 </html>
